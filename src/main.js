@@ -26,7 +26,7 @@ let config  = {
 }
 
 // create game
-let game = new Phaser.Game(config);
+let game = new Phaser.Game(config)
 
 // global variables
 let centerX = game.config.width / 2
