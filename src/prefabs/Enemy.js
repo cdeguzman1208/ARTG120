@@ -1,6 +1,6 @@
-class Player extends Phaser.Physics.Arcade.Sprite {
+class Enemy extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, velocity) {
-        super(scene, x, y, 'player');
+        super(scene, x, y, 'enemy');
 
         // maintain scene context 
         this.parentScene = scene; 
