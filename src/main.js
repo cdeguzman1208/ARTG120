@@ -1,5 +1,5 @@
 // tame the javashrek
-'use strict';
+'use strict'
 
 // main game object
 let config  = {
@@ -30,7 +30,9 @@ let config  = {
 let game = new Phaser.Game(config);
 
 // global variables
-let centerX = game.config.width/2;
-let centerY = game.config.height/2;
-let w = game.config.width;
-let h = game.config.height;
+let centerX = game.config.width / 2
+let centerY = game.config.height / 2
+let w = game.config.width
+let h = game.config.height
+let cursors
+let keyW, keyA, keyS, keyD
