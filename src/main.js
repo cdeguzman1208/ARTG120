@@ -20,7 +20,6 @@ let config  = {
         target: 60,
         forceSetTimeOut: true
     },
-    zoom: 2,
     render: {
         pixelArt: true
     }
