@@ -5,7 +5,8 @@
 let config  = {
     type: Phaser.CANVAS,
     width: 480,
-    height: 320,
+    height: 480,
+    zoom: 2,
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -23,7 +24,6 @@ let config  = {
     render: {
         pixelArt: true
     },
-    zoom: 2
 }
 
 // create game
