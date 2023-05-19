@@ -6,6 +6,9 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+
+        resourceCount = 0; 
+
         // set up scene switcher
         this.input.keyboard.on('keydown', (event) => {
             switch(event.key) {
@@ -58,12 +61,25 @@ class Play extends Phaser.Scene {
         this.cameras.main.startFollow(this.robot, true, 0.25, 0.25)
         this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels)
 
+        // set up resource group 
+        this.resourceGroup = this.add.group({
+            runChildUpdate: true
+        });
+
+        this.addResource(); 
+
         // input
         this.cursors = this.input.keyboard.createCursorKeys()
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    }
+
+    addResource() {
+        // console.log('resource')
+        let resource = new Resource(this);
+        this.resourceGroup.add(resource); 
     }
 
     update() {
