@@ -20,14 +20,13 @@ let config  = {
         target: 60,
         forceSetTimeOut: true
     },
-    zoom: 2,
     render: {
         pixelArt: true
     }
 }
 
 // create game
-let game = new Phaser.Game(config);
+let game = new Phaser.Game(config)
 
 // global variables
 let centerX = game.config.width / 2

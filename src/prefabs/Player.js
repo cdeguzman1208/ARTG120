@@ -3,7 +3,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, 'player', 0);
 
         // maintain scene context 
-        this.parentScene = scene; 
+        this.parentScene = scene
 
         // set up physics sprite 
         this.parentScene.add.existing(this); 
