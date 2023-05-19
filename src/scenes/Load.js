@@ -17,17 +17,25 @@ class Load extends Phaser.Scene {
         })
 
         // sprites
-        this.load.path = './assets/art/sprites'
-        this.load.image('robot', 'robosprite1.png')
+        this.load.path = './assets/art/sprites/'
+        this.load.spritesheet('robot', 'robosprite1.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        })
 
         // tiles
-        this.load.path = './assets/art/tiles'
+        this.load.path = './assets/art/tiles/'
+        this.load.image('tilesetImage', 'tileset.png', {
+            frameWidth: 16,
+            frameHeight: 16
+        })
+        this.load.tilemapTiledJSON('tilemapJSON', 'area01.json')
 
         // music
-        this.load.path = './assets/sound/music'
+        this.load.path = './assets/sound/music/'
 
         // sfx
-        this.load.path = './assets/sound/sfx'
+        this.load.path = './assets/sound/sfx/'
     }
 
     create() {
