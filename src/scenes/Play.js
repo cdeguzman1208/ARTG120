@@ -70,17 +70,17 @@ class Play extends Phaser.Scene {
         // player movement
         this.direction = new Phaser.Math.Vector2(0)
         if(this.cursors.left.isDown || Phaser.Input.Keyboard.DownDuration(keyA)) {
-            this.robot.rotation = Math.PI / 2
+            this.robot.rotation = this.robot.body.angle; 
             this.direction.x = -1
         } else if(this.cursors.right.isDown || Phaser.Input.Keyboard.DownDuration(keyD)) {
-            this.robot.rotation = Math.PI * 3 / 2
+            this.robot.rotation = this.robot.body.angle;
             this.direction.x = 1
         }
         if(this.cursors.up.isDown || Phaser.Input.Keyboard.DownDuration(keyW)) {
-            this.robot.rotation = Math.PI
+            this.robot.rotation = this.robot.body.angle;
             this.direction.y = -1
         } else if(this.cursors.down.isDown || Phaser.Input.Keyboard.DownDuration(keyS)) {
-            this.robot.rotation = 0
+            this.robot.rotation = this.robot.body.angle;
             this.direction.y = 1
         }
         this.direction.normalize()
