@@ -37,7 +37,7 @@ class Play extends Phaser.Scene {
         this.robot = this.physics.add.sprite(32, 32, 'robot', 0)
         this.anims.create({
             key: 'walk',
-            frameRate: 8,
+            frameRate: 4,
             repeat: -1,
             frames: this.anims.generateFrameNumbers('robot', {
                 start: 0,
@@ -60,22 +60,26 @@ class Play extends Phaser.Scene {
 
         // input
         this.cursors = this.input.keyboard.createCursorKeys()
+        keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     }
 
     update() {
         // player movement
         this.direction = new Phaser.Math.Vector2(0)
-        if(this.cursors.left.isDown) {
+        if(this.cursors.left.isDown || Phaser.Input.Keyboard.DownDuration(keyA)) {
             this.robot.rotation = Math.PI / 2
             this.direction.x = -1
-        } else if(this.cursors.right.isDown) {
+        } else if(this.cursors.right.isDown || Phaser.Input.Keyboard.DownDuration(keyD)) {
             this.robot.rotation = Math.PI * 3 / 2
             this.direction.x = 1
         }
-        if(this.cursors.up.isDown) {
+        if(this.cursors.up.isDown || Phaser.Input.Keyboard.DownDuration(keyW)) {
             this.robot.rotation = Math.PI
             this.direction.y = -1
-        } else if(this.cursors.down.isDown) {
+        } else if(this.cursors.down.isDown || Phaser.Input.Keyboard.DownDuration(keyS)) {
             this.robot.rotation = 0
             this.direction.y = 1
         }
