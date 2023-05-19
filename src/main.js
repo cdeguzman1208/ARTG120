@@ -23,7 +23,7 @@ let config  = {
     },
     render: {
         pixelArt: true
-    }
+    },
 }
 
 // create game
