@@ -1,6 +1,6 @@
 class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
-        super(scene, x, y, 'player', 0);
+        super(scene, x, y, 'robot', 0);
 
         // maintain scene context 
         this.parentScene = scene
@@ -8,11 +8,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         // set up physics sprite 
         this.parentScene.add.existing(this); 
         this.parentScene.physics.add.existing(this);
-        this.body.set
 
         // Properties
-        this.stage = 1;
-        this.maxScrap = 10;
         this.nScrap = 0;
         this.maxVelocity = 700;
         this.velocity = this.maxVelocity;
@@ -23,14 +20,14 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     collect() {
-        if(this.nScrap >= this.maxScrap){
-            this.velocity -= 10;
+        if(this.nScrap >= max_scraps_robot[stage]){
+            this.velocity -= 100;
         }
         this.nScrap++;
     }
 
     evolve() {
-        this.stage++;
+        stage++;
         this.maxVelocity += 200;
         this.velocity = this.maxVelocity;
     }

@@ -35,3 +35,8 @@ let w = game.config.width
 let h = game.config.height
 let cursors
 let keyW, keyA, keyS, keyD
+
+// evolution tracking
+let stage = 0;
+const max_scraps_robot = [5, 10, 15];
+const max_scraps_base = [8, 15, 30];
