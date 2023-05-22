@@ -36,6 +36,9 @@ class Play extends Phaser.Scene {
         const terrainLayer = map.createLayer('Terrain', tileset, 0, 0)
         const treeLayer = map.createLayer('Trees', tileset, 0, 0).setDepth(200)
 
+        // add base
+        this.base = new Workshop(this, centerX, centerY, 'base');
+
         // add player
         this.robot = new Player(this, 32, 32, 'robot')
         this.anims.create({

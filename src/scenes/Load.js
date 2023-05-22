@@ -25,6 +25,7 @@ class Load extends Phaser.Scene {
         this.load.image('bolt', 'bolt.png'); 
         this.load.image('nut', 'nut.png'); 
         this.load.image('screw', 'screw.png'); 
+        this.load.image('base', 'workshop.png');
 
         // tiles
         this.load.path = './assets/art/tiles/'

@@ -23,6 +23,7 @@ class Menu extends Phaser.Scene {
                     break
             }
         })
+        this.add.text(centerX, centerY, "Press SPACE to play").setOrigin(0.5);
     }
 
     update() {
