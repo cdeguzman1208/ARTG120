@@ -83,8 +83,6 @@ class Play extends Phaser.Scene {
         // robot-workshop overlap check
         this.physics.add.overlap(this.robot, this.base, 
             (robot,base) => {
-            // let remainingSpace = max_scraps_base[stage] - base.nScrap;
-            // if(remainingSpace < )
             while(robot.nScrap > 0 && base.nScrap < max_scraps_base[stage]){
                 robot.nScrap--;
                 base.nScrap++;
@@ -92,13 +90,6 @@ class Play extends Phaser.Scene {
             this.resourceText.text = `Scrap x${this.robot.nScrap}`;
             base.scrapText.text = `${base.nScrap}/${max_scraps_base[stage]}`;
         }, null, this);
-        // (robot, base) => {null, this
-        //     // only execute if robot is not empty and base is not full
-        //     if(robot.nScrap > 0 && base.nScrap < max_scraps_base[stage]){
-        //         return true;
-        //     }
-        //     return false;
-        // }, this);
 
 
         // input
@@ -134,8 +125,5 @@ class Play extends Phaser.Scene {
         }
         this.direction.normalize()
         this.robot.setVelocity(this.robot.maxVelocity * this.direction.x, this.robot.maxVelocity * this.direction.y)
-
-        // check collisions
-        // this.physics.overlap
     }
 }

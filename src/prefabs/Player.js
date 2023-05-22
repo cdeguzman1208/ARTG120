@@ -9,7 +9,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.parentScene.add.existing(this); 
         this.parentScene.physics.add.existing(this);
         this.body.setSize(16,16);
-        //this.body.onOverlap = true;
 
         // Properties
         this.nScrap = 0;

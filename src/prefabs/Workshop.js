@@ -8,7 +8,6 @@ class Workshop extends Phaser.Physics.Arcade.Sprite {
         // set up physics sprite 
         this.parentScene.add.existing(this); 
         this.parentScene.physics.add.existing(this);
-        // this.body.setSize(36,36);
 
         // properties
         this.nScrap = 0;
