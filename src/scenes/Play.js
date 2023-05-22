@@ -6,7 +6,6 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-
         resourceCount = 0; 
 
         // set up scene switcher
@@ -89,6 +88,10 @@ class Play extends Phaser.Scene {
             }
             this.resourceText.text = `Scrap x${this.robot.nScrap}`;
             base.scrapText.text = `${base.nScrap}/${max_scraps_base[stage]}`;
+            if(base.nScrap == max_scraps_base[stage]){
+                robot.evolve();
+                base.evolve();
+            }
         }, null, this);
 
 

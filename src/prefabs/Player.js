@@ -26,8 +26,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     evolve() {
-        stage++;
-        this.maxVelocity += 200;
-        this.velocity = this.maxVelocity;
+        this.maxVelocity += 100;
     }
 }

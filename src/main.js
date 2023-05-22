@@ -41,4 +41,4 @@ let keyW, keyA, keyS, keyD
 // evolution tracking
 let stage = 0;
 const max_scraps_robot = [5, 10, 15];
-const max_scraps_base = [8, 15, 30];
+const max_scraps_base = [15, 35, 50];
