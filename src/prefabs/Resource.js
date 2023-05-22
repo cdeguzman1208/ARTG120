@@ -10,6 +10,8 @@ class Resource extends Phaser.Physics.Arcade.Sprite {
         this.parentScene.add.existing(this)
         this.parentScene.physics.add.existing(this)
         this.body.immovable = true
+        this.body.setSize(20,20);
+        // this.body.onOverlap = true
     }
 
     update() {
@@ -18,4 +20,6 @@ class Resource extends Phaser.Physics.Arcade.Sprite {
             resourceCount++; 
         }
     }
+
+
 }

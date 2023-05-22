@@ -37,7 +37,7 @@ class Play extends Phaser.Scene {
         const treeLayer = map.createLayer('Trees', tileset, 0, 0).setDepth(200)
 
         // add player
-        this.robot = this.physics.add.sprite(32, 32, 'robot', 0)
+        this.robot = new Player(this, 32, 32, 'robot')
         this.anims.create({
             key: 'walk',
             frameRate: 4,
@@ -65,8 +65,18 @@ class Play extends Phaser.Scene {
         this.resourceGroup = this.add.group({
             runChildUpdate: true
         });
-
         this.addResource(); 
+
+        // display collected resources
+        this.resourceText = this.add.text(20, 20, `Scrap x${this.robot.nScrap}`).setScrollFactor(0);
+
+        // check overlap
+        this.physics.add.overlap(this.robot, this.resourceGroup, (robot,resource) => {
+            resource.destroy();
+            robot.collect();
+            this.resourceText.text = `Scrap x${this.robot.nScrap}`
+        }, null, this)
+
 
         // input
         this.cursors = this.input.keyboard.createCursorKeys()
@@ -100,6 +110,9 @@ class Play extends Phaser.Scene {
             this.direction.y = 1
         }
         this.direction.normalize()
-        this.robot.setVelocity(this.VEL * this.direction.x, this.VEL * this.direction.y)
+        this.robot.setVelocity(this.robot.maxVelocity * this.direction.x, this.robot.maxVelocity * this.direction.y)
+
+        // check collisions
+        // this.physics.overlap
     }
 }
