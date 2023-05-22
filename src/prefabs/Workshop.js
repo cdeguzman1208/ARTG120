@@ -11,10 +11,10 @@ class Workshop extends Phaser.Physics.Arcade.Sprite {
         // this.body.setSize(36,36);
 
         // properties
-        this.nScraps = 0;
+        this.nScrap = 0;
 
         // display stored resources
-        this.scrapText = this.parentScene.add.text(x, y + 35, `${this.nScraps}/${max_scraps_base[stage]}`, {color: '#000'}).setOrigin(0.5);
+        this.scrapText = this.parentScene.add.text(x, y + 35, `${this.nScrap}/${max_scraps_base[stage]}`, {color: '#000'}).setOrigin(0.5);
     }
 
     

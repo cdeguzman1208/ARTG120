@@ -37,7 +37,7 @@ class Play extends Phaser.Scene {
         const treeLayer = map.createLayer('Trees', tileset, 0, 0).setDepth(200)
 
         // add base
-        this.base = new Workshop(this, centerX, centerY, 'base');
+        this.base = new Workshop(this, centerX + 10, centerY, 'base');
 
         // add player
         this.robot = new Player(this, 32, 32, 'robot')
@@ -73,12 +73,32 @@ class Play extends Phaser.Scene {
         // display collected resources
         this.resourceText = this.add.text(20, 20, `Scrap x${this.robot.nScrap}`).setScrollFactor(0);
 
-        // check overlap
+        // robot-resource overlap check
         this.physics.add.overlap(this.robot, this.resourceGroup, (robot,resource) => {
             resource.destroy();
             robot.collect();
             this.resourceText.text = `Scrap x${this.robot.nScrap}`
         }, null, this)
+
+        // robot-workshop overlap check
+        this.physics.add.overlap(this.robot, this.base, 
+            (robot,base) => {
+            // let remainingSpace = max_scraps_base[stage] - base.nScrap;
+            // if(remainingSpace < )
+            while(robot.nScrap > 0 && base.nScrap < max_scraps_base[stage]){
+                robot.nScrap--;
+                base.nScrap++;
+            }
+            this.resourceText.text = `Scrap x${this.robot.nScrap}`;
+            base.scrapText.text = `${base.nScrap}/${max_scraps_base[stage]}`;
+        }, null, this);
+        // (robot, base) => {null, this
+        //     // only execute if robot is not empty and base is not full
+        //     if(robot.nScrap > 0 && base.nScrap < max_scraps_base[stage]){
+        //         return true;
+        //     }
+        //     return false;
+        // }, this);
 
 
         // input
