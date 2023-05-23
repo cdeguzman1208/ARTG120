@@ -13,7 +13,7 @@ let config  = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true
+            // debug: true
         }
     },
     scene: [ Load, Menu, Play, Credits ],
@@ -37,6 +37,7 @@ let h = game.config.height
 let resourceCount; 
 let cursors
 let keyW, keyA, keyS, keyD
+let map
 
 // evolution tracking
 let stage = 0;
