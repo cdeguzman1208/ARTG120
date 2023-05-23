@@ -6,6 +6,9 @@ class Play extends Phaser.Scene {
     create() {
         resourceCount = 0; 
 
+        // robot sprite name array for evolution
+        this.spriteArray = ['robot', 'robot2'];
+
         // set up scene switcher
         this.input.keyboard.on('keydown', (event) => {
             switch(event.key) {
@@ -37,8 +40,7 @@ class Play extends Phaser.Scene {
         // add base
         this.base = new Workshop(this, centerX + 10, centerY, 'base');
 
-        // add player
-        this.robot = new Player(this, 32, 32, 'robot')
+        // create animations
         this.anims.create({
             key: 'walk',
             frameRate: 4,
@@ -48,7 +50,21 @@ class Play extends Phaser.Scene {
                 end: 1
             })
         })
-        this.robot.play('walk')
+        this.anims.create({
+            key: 'walk2',
+            frameRate: 4,
+            repeat: -1,
+            frames: this.anims.generateFrameNumbers('robot2', {
+                start: 0,
+                end: 1
+            })
+        })
+
+        // animation name array
+        this.animArray = ['walk', 'walk2'];
+
+        // add player
+        this.robot = new Player(this, 32, 32, this.spriteArray[stage])
 
         // enable collision
         this.robot.body.setCollideWorldBounds(true)
@@ -87,7 +103,8 @@ class Play extends Phaser.Scene {
             }
             this.resourceText.text = `Scrap x${this.robot.nScrap}`;
             base.scrapText.text = `${base.nScrap}/${max_scraps_base[stage]}`;
-            if(base.nScrap == max_scraps_base[stage]){
+            if(base.nScrap == max_scraps_base[stage] && stage < 2){
+                stage++;
                 robot.evolve();
                 base.evolve();
             }

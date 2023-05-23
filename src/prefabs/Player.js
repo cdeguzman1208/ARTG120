@@ -13,6 +13,9 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         // Properties
         this.nScrap = 0;
         this.maxVelocity = 200;
+
+        // start animation
+        this.play(this.parentScene.animArray[stage]);
     }
 
     update() {
@@ -27,5 +30,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
     evolve() {
         this.maxVelocity += 100;
+        this.setTexture(this.parentScene.spriteArray[stage]);
+        this.play(this.parentScene.animArray[stage]);
     }
 }
