@@ -29,7 +29,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     evolve() {
-        this.maxVelocity += 100;
+        this.maxVelocity += 50;
         this.setTexture(this.parentScene.spriteArray[stage]);
         this.play(this.parentScene.animArray[stage]);
     }

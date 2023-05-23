@@ -7,7 +7,7 @@ class Play extends Phaser.Scene {
         resourceCount = 0; 
 
         // robot sprite name array for evolution
-        this.spriteArray = ['robot', 'robot2'];
+        this.spriteArray = ['robot', 'robot2', 'robot3'];
 
         // set up scene switcher
         this.input.keyboard.on('keydown', (event) => {
@@ -59,9 +59,18 @@ class Play extends Phaser.Scene {
                 end: 1
             })
         })
+        this.anims.create({
+            key: 'walk3',
+            frameRate: 4,
+            repeat: -1,
+            frames: this.anims.generateFrameNumbers('robot3', {
+                start: 0,
+                end: 1
+            })
+        })
 
         // animation name array
-        this.animArray = ['walk', 'walk2'];
+        this.animArray = ['walk', 'walk2', 'walk3'];
 
         // add player
         this.robot = new Player(this, 32, 32, this.spriteArray[stage])

@@ -26,6 +26,10 @@ class Load extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         })
+        this.load.spritesheet('robot3', 'robosprite3.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        })
         this.load.image('bolt', 'bolt.png'); 
         this.load.image('nut', 'nut.png'); 
         this.load.image('screw', 'screw.png'); 
