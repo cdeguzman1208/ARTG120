@@ -15,6 +15,4 @@ class Workshop extends Phaser.Physics.Arcade.Sprite {
         // display stored resources
         this.scrapText = this.parentScene.add.text(x, y + 35, `${this.nScrap}/${max_scraps_base[stage]}`, {color: '#000'}).setOrigin(0.5);
     }
-
-    
 }

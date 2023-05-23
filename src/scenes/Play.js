@@ -1,8 +1,6 @@
 class Play extends Phaser.Scene {
     constructor() {
         super('playScene')
-
-        this.VEL = 200
     }
 
     create() {
