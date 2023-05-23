@@ -37,6 +37,7 @@ let h = game.config.height
 let resourceCount; 
 let cursors
 let keyW, keyA, keyS, keyD
+let map
 
 // evolution tracking
 let stage = 0;

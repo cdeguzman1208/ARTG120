@@ -1,8 +1,6 @@
 class Play extends Phaser.Scene {
     constructor() {
         super('playScene')
-
-        this.VEL = 200
     }
 
     create() {
@@ -29,11 +27,12 @@ class Play extends Phaser.Scene {
         })
 
         // add environment
-        const map = this.add.tilemap('tilemapJSON')
-        const tileset = map.addTilesetImage('tileset', 'tilesetImage')
-        const bgLayer = map.createLayer('Background', tileset, 0, 0)
-        const terrainLayer = map.createLayer('Terrain', tileset, 0, 0)
-        const treeLayer = map.createLayer('Trees', tileset, 0, 0).setDepth(200)
+        map = this.add.tilemap('tilemapJSON')
+        const tileset = map.addTilesetImage('tilesheet', 'tilesetImage')
+        const bgLayer = map.createLayer('Floor', tileset, 0, 0)
+        // const bgLayer = map.createLayer('Background', tileset, 0, 0)
+        // const terrainLayer = map.createLayer('Terrain', tileset, 0, 0)
+        // const treeLayer = map.createLayer('Trees', tileset, 0, 0).setDepth(200)
 
         // add base
         this.base = new Workshop(this, centerX + 10, centerY, 'base');
@@ -53,10 +52,10 @@ class Play extends Phaser.Scene {
 
         // enable collision
         this.robot.body.setCollideWorldBounds(true)
-        terrainLayer.setCollisionByProperty({ collides: true })
-        treeLayer.setCollisionByProperty({ collides: true })
-        this.physics.add.collider(this.robot, terrainLayer)
-        this.physics.add.collider(this.robot, treeLayer)
+        // terrainLayer.setCollisionByProperty({ collides: true })
+        // treeLayer.setCollisionByProperty({ collides: true })
+        // this.physics.add.collider(this.robot, terrainLayer)
+        // this.physics.add.collider(this.robot, treeLayer)
 
         // cameras
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
