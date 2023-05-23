@@ -117,6 +117,7 @@ class Play extends Phaser.Scene {
                 robot.evolve();
                 base.evolve();
             }
+            robot.runVelocity = robot.maxVelocity;
         }, null, this);
 
 
@@ -152,6 +153,6 @@ class Play extends Phaser.Scene {
             this.direction.y = 1
         }
         this.direction.normalize()
-        this.robot.setVelocity(this.robot.maxVelocity * this.direction.x, this.robot.maxVelocity * this.direction.y)
+        this.robot.setVelocity(this.robot.runVelocity * this.direction.x, this.robot.runVelocity * this.direction.y)
     }
 }

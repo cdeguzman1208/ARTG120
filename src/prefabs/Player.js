@@ -13,6 +13,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         // Properties
         this.nScrap = 0;
         this.maxVelocity = 200;
+        this.runVelocity = this.maxVelocity;
 
         // start animation
         this.play(this.parentScene.animArray[stage]);
@@ -22,15 +23,17 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     collect() {
-        if(this.nScrap >= max_scraps_robot[stage] && this.maxVelocity > 0){
-            this.maxVelocity -= 20;
+        if(this.nScrap >= max_scraps_robot[stage] && this.runVelocity > 0){
+            this.runVelocity -= 20;
         }
         this.nScrap++;
+        resourceCount--;
     }
 
     evolve() {
         this.maxVelocity += 50;
         this.setTexture(this.parentScene.spriteArray[stage]);
         this.play(this.parentScene.animArray[stage]);
+        this.body.setSize(16 * Math.pow(2,stage));
     }
 }
