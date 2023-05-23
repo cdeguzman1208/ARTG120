@@ -1,7 +1,7 @@
 class Resource extends Phaser.Physics.Arcade.Sprite {
     constructor(scene) {
         let randomResource = ['bolt', 'nut', 'screw'];
-        super(scene, Math.random() * 576 + 32, Math.random() * 416 + 32, randomResource[Math.floor(Math.random() * randomResource.length)]);
+        super(scene, Math.random() * (map.widthInPixels - 64) + 32, Math.random() * (map.heightInPixels - 64) + 32, randomResource[Math.floor(Math.random() * randomResource.length)]);
 
         // maintain scene context 
         this.parentScene = scene

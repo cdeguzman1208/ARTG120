@@ -29,11 +29,11 @@ class Load extends Phaser.Scene {
 
         // tiles
         this.load.path = './assets/art/tiles/'
-        this.load.image('tilesetImage', 'tileset.png', {
-            frameWidth: 16,
-            frameHeight: 16
+        this.load.image('tilesetImage', 'tilesheet.png', {
+            frameWidth: 32,
+            frameHeight: 32
         })
-        this.load.tilemapTiledJSON('tilemapJSON', 'area01.json')
+        this.load.tilemapTiledJSON('tilemapJSON', 'junkyard.json')
 
         // music
         this.load.path = './assets/sound/music/'
