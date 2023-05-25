@@ -4,9 +4,9 @@
 // main game object
 let config  = {
     type: Phaser.CANVAS,
-    width: 480,
+    width: 640,
     height: 480,
-    zoom: 2,
+    zoom: 1.25,
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -16,7 +16,7 @@ let config  = {
             // debug: true
         }
     },
-    scene: [ Load, Menu, Play, Credits ],
+    scene: [ Load, Menu, Play, Credits, Tutorial ],
     fps: {
         target: 60,
         forceSetTimeOut: true
