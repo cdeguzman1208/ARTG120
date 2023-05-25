@@ -24,6 +24,9 @@ class Play extends Phaser.Scene {
                     // console.log('credits')
                     this.scene.start('creditsScene')
                     break
+                case 't' :
+                    this.scene.start('tutorialScene')
+                    break
                 default:
                     break
             }
