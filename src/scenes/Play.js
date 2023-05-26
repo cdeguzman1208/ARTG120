@@ -4,7 +4,9 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+        // variables/settings
         resourceCount = 0; 
+        this.direction = new Phaser.Math.Vector2(0)
 
         // robot sprite name array for evolution
         this.spriteArray = ['robot', 'robot2', 'robot3'];
@@ -101,9 +103,11 @@ class Play extends Phaser.Scene {
 
         // robot-resource overlap check
         this.physics.add.overlap(this.robot, this.resourceGroup, (robot,resource) => {
-            resource.destroy();
-            robot.collect();
-            this.resourceText.text = `Scrap x${this.robot.nScrap}`
+            if(resource.body.velocity.x == 0 && resource.body.velocity.y == 0){
+                resource.destroy();
+                robot.collect();
+                this.resourceText.text = `Scrap x${this.robot.nScrap}`
+            }
         }, null, this)
 
         // robot-workshop overlap check
@@ -134,28 +138,37 @@ class Play extends Phaser.Scene {
 
     addResource() {
         // console.log('resource')
-        let resource = new Resource(this);
+        let resource = new Resource(this, Math.random() * (map.widthInPixels - 64) + 32, Math.random() * (map.heightInPixels - 64) + 32, 0);
         this.resourceGroup.add(resource); 
     }
 
     update() {
         // player movement
-        this.direction = new Phaser.Math.Vector2(0)
-        if(this.cursors.left.isDown || keyA.isDown) {
+        this.direction.x = 0;
+        this.direction.y = 0;
+        if(this.cursors.left.isDown || Phaser.Input.Keyboard.DownDuration(keyA)) {
             this.robot.rotation = this.robot.body.angle; 
             this.direction.x = -1
-        } else if(this.cursors.right.isDown || keyD.isDown) {
+        } else if(this.cursors.right.isDown || Phaser.Input.Keyboard.DownDuration(keyD)) {
             this.robot.rotation = this.robot.body.angle;
             this.direction.x = 1
         }
         if(this.cursors.up.isDown || keyW.isDown) {
             this.robot.rotation = this.robot.body.angle;
             this.direction.y = -1
-        } else if(this.cursors.down.isDown || keyS.isDown) {
+        } else if(this.cursors.down.isDown || Phaser.Input.Keyboard.DownDuration(keyS)) {
             this.robot.rotation = this.robot.body.angle;
             this.direction.y = 1
         }
         this.direction.normalize()
         this.robot.setVelocity(this.robot.runVelocity * this.direction.x, this.robot.runVelocity * this.direction.y)
+
+        // console.log(this.robot.rotation);
+        // console.log(this.robot.body.angle);
+
+        // player throw scrap
+        if(Phaser.Input.Keyboard.JustDown(this.cursors.space) && this.robot.nScrap > 0) {
+            this.robot.throwScrap();
+        }
     }
 }

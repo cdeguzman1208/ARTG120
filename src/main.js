@@ -41,5 +41,5 @@ let map
 
 // evolution tracking
 let stage = 0;
-const max_scraps_robot = [5, 10, 15];
-const max_scraps_base = [15, 35, 50];
+const max_scraps_robot = [5, 10, 15];   // tweak as necessary
+const max_scraps_base = [15, 35, 50];   // tweak as necessary

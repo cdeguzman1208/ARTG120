@@ -30,6 +30,20 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         resourceCount--;
     }
 
+    throwScrap() {
+        if(this.nScrap > max_scraps_robot[stage]){
+            this.runVelocity += 20;
+        }
+
+        let thrown = new Resource(this.parentScene, this.x , this.y, 200);
+        // .setVelocity(200 * this.parentScene.direction.x, 200 * this.parentScene.direction.y);
+        this.parentScene.resourceGroup.add(thrown); 
+        resourceCount++;
+
+        this.nScrap--;
+        this.parentScene.resourceText.text = `Scrap x${this.nScrap}`
+    }
+
     evolve() {
         this.maxVelocity += 50;
         this.setTexture(this.parentScene.spriteArray[stage]);
