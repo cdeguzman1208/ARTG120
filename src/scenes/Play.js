@@ -43,7 +43,7 @@ class Play extends Phaser.Scene {
         // const treeLayer = map.createLayer('Trees', tileset, 0, 0).setDepth(200)
 
         // add base
-        this.base = new Workshop(this, map.widthInPixels / 2, map.heightInPixels / 2, 'base');
+        this.base = new Workshop(this, map.widthInPixels / 2, map.heightInPixels / 2, 'base')
 
         // create animations
         this.anims.create({
@@ -78,7 +78,7 @@ class Play extends Phaser.Scene {
         this.animArray = ['walk', 'walk2', 'walk3'];
 
         // add player
-        this.robot = new Player(this, 32, 32, this.spriteArray[stage])
+        this.robot = new Player(this, map.widthInPixels / 2, map.heightInPixels / 2 + 15, this.spriteArray[stage])
 
         // enable collision
         this.robot.body.setCollideWorldBounds(true)
