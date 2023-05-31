@@ -43,7 +43,7 @@ class Play extends Phaser.Scene {
         // const treeLayer = map.createLayer('Trees', tileset, 0, 0).setDepth(200)
 
         // add base
-        this.base = new Workshop(this, centerX + 10, centerY, 'base');
+        this.base = new Workshop(this, map.widthInPixels / 2, map.heightInPixels / 2, 'base');
 
         // create animations
         this.anims.create({
