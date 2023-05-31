@@ -18,7 +18,7 @@ class Load extends Phaser.Scene {
 
         // sprites
         this.load.path = './assets/art/sprites/'
-        this.load.spritesheet('robot', 'robosprite1.png', {
+        this.load.spritesheet('robot', 'robosprite1.1.png', {
             frameWidth: 32,
             frameHeight: 32
         })
@@ -30,10 +30,19 @@ class Load extends Phaser.Scene {
             frameWidth: 64,
             frameHeight: 64
         })
+        this.load.spritesheet('rat', 'rat.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        })
+        this.load.spritesheet('vulture', 'vulture.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        })
         this.load.image('bolt', 'bolt.png'); 
         this.load.image('nut', 'nut.png'); 
         this.load.image('screw', 'screw.png'); 
-        this.load.image('base', 'workshop.png');
+        this.load.image('base', 'workshop1.png');
+        this.load.image('base2', 'workshop2.png');
 
         // tiles
         this.load.path = './assets/art/tiles/'
