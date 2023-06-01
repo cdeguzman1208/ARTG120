@@ -57,6 +57,11 @@ class Load extends Phaser.Scene {
 
         // sfx
         this.load.path = './assets/sound/sfx/'
+        this.load.audio('select', 'blipSelect.wav')
+        this.load.audio('pickup', 'pickupCoin.wav')
+        this.load.audio('drop', 'jump.wav')
+        this.load.audio('upgrade', 'powerUp.wav')
+        this.load.audio('hooray', 'explosion.wav')
     }
 
     create() {
