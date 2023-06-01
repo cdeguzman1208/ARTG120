@@ -4,6 +4,15 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+        this.selectSFX = this.sound.add('select')
+        
+        // add sounds
+        this.selectSFX = this.sound.add('select')
+        this.pickupSFX = this.sound.add('pickup')
+        this.dropSFX = this.sound.add('drop')
+        this.upgradeSFX = this.sound.add('upgrade')
+        this.hooraySFX = this.sound.add('hooray')
+
         // variables/settings
         resourceCount = 0; 
         ratCount = 0; 
@@ -17,17 +26,21 @@ class Play extends Phaser.Scene {
             switch(event.key) {
                 case 'Escape':
                     // console.log('menu')
+                    this.selectSFX.play()
                     this.scene.start('menuScene')
                     break
-                case ' ':
+                case 'r':
                     // console.log('play')
-                    this.scene.restart
+                    this.selectSFX.play()
+                    this.scene.restart()
                     break
                 case 'Backspace':
                     // console.log('credits')
+                    this.selectSFX.play()
                     this.scene.start('creditsScene')
                     break
                 case 't' :
+                    this.selectSFX.play()
                     this.scene.start('tutorialScene')
                     break
                 default:
@@ -114,6 +127,7 @@ class Play extends Phaser.Scene {
         // robot-resource overlap check
         this.physics.add.overlap(this.robot, this.resourceGroup, (robot,resource) => {
             if(resource.body.velocity.x == 0 && resource.body.velocity.y == 0){
+                this.pickupSFX.play()
                 resource.destroy();
                 robot.collect();
                 this.resourceText.text = `Scrap x${this.robot.nScrap}`
@@ -130,6 +144,7 @@ class Play extends Phaser.Scene {
             this.resourceText.text = `Scrap x${this.robot.nScrap}`;
             base.scrapText.text = `${base.nScrap}/${max_scraps_base[stage]}`;
             if(base.nScrap == max_scraps_base[stage] && stage < 2){
+                this.upgradeSFX.play()
                 stage++;
                 robot.evolve();
                 base.evolve();
@@ -191,6 +206,7 @@ class Play extends Phaser.Scene {
 
         // player throw scrap
         if(Phaser.Input.Keyboard.JustDown(this.cursors.space) && this.robot.nScrap > 0) {
+            this.dropSFX.play()
             this.robot.throwScrap();
         }
     }

@@ -4,22 +4,28 @@ class Tutorial extends Phaser.Scene {
     }
 
     create() {
+        this.selectSFX = this.sound.add('select')
+
         // set up scene switcher
         this.input.keyboard.on('keydown', (event) => {
             switch(event.key) {
                 case 'Escape':
                     // console.log('menu')
+                    this.selectSFX.play()
                     this.scene.start('menuScene')
                     break
                 case ' ':
                     // console.log('play')
+                    this.selectSFX.play()
                     this.scene.start('playScene')
                     break
                 case 'Backspace':
                     // console.log('credits')
+                    this.selectSFX.play()
                     this.scene.start('creditsScene')
                     break
                 case 't' :
+                    this.selectSFX.play()
                     this.scene.restart()
                 default:
                     break
@@ -45,6 +51,6 @@ class Tutorial extends Phaser.Scene {
         tutConfig.fontSize = '20px'
         tutConfig.backgroundColor = ''
         tutConfig.align = 'left'
-        this.add.text(w/2, h/2, '* Use ARROW KEYS to move\n\n* Collect metal scraps throughout the map\n\n* Bring it back to the Workshop to build yourself up\n\n* Be careful! Too much weight will slow you down!\n\n* Press ESC to return to the Main Menu', tutConfig).setOrigin(0.5)
+        this.add.text(w/2, h/2 + 25, '* Use ARROW KEYS to move\n\n* Collect metal scraps throughout the map\n\n* Bring it back to the Workshop to build yourself up\n\n* Be careful! Too much weight will slow you down!\n\n* Press SPACE to drop trash\n\n* Press ESC to return to the Main Menu', tutConfig).setOrigin(0.5)
     }
 }
