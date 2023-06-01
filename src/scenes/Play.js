@@ -6,6 +6,7 @@ class Play extends Phaser.Scene {
     create() {
         // variables/settings
         resourceCount = 0; 
+        ratCount = 0; 
         this.direction = new Phaser.Math.Vector2(0)
 
         // robot sprite name array for evolution
@@ -73,6 +74,15 @@ class Play extends Phaser.Scene {
                 end: 1
             })
         })
+        this.anims.create({
+            key: 'ratWalk', 
+            frameRate: 3, 
+            repeat: -1, 
+            frames: this.anims.generateFrameNumbers('rat', {
+                start: 0, 
+                end: 1
+            })
+        })
 
         // animation name array
         this.animArray = ['walk', 'walk2', 'walk3'];
@@ -127,6 +137,13 @@ class Play extends Phaser.Scene {
             robot.runVelocity = robot.maxVelocity;
         }, null, this);
 
+        // rat group 
+        this.ratGroup = this.add.group({
+            runChildUpdate: true
+        });
+        this.time.delayedCall(2500, () => { 
+            this.addRat(); 
+        });
 
         // input
         this.cursors = this.input.keyboard.createCursorKeys()
@@ -140,6 +157,12 @@ class Play extends Phaser.Scene {
         // console.log('resource')
         let resource = new Resource(this, Math.random() * (map.widthInPixels - 64) + 32, Math.random() * (map.heightInPixels - 64) + 32, 0);
         this.resourceGroup.add(resource); 
+    }
+
+    addRat() {
+        console.log('rat'); 
+        let rat = new Rat(this, 150); 
+        this.ratGroup.add(rat); 
     }
 
     update() {
