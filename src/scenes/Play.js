@@ -96,12 +96,26 @@ class Play extends Phaser.Scene {
                 end: 1
             })
         })
+        this.anims.create({
+            key: 'fly',
+            frameRate: 4,
+            repeat: -1,
+            frames: this.anims.generateFrameNumbers('vulture', {
+                start: 0,
+                end: 1
+            })
+        })
+
 
         // animation name array
         this.animArray = ['walk', 'walk2', 'walk3'];
 
         // add player
         this.robot = new Player(this, map.widthInPixels / 2, map.heightInPixels / 2 + 15, this.spriteArray[stage])
+
+        // add test vulture
+        this.vulture = new Vulture(this, map.widthInPixels / 2, map.heightInPixels / 2, 1000, 200).chooseDestination();
+
 
         // enable collision
         this.robot.body.setCollideWorldBounds(true)
