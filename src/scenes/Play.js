@@ -52,9 +52,7 @@ class Play extends Phaser.Scene {
         map = this.add.tilemap('tilemapJSON')
         const tileset = map.addTilesetImage('tilesheet', 'tilesetImage')
         const bgLayer = map.createLayer('floor', tileset, 0, 0)
-        // const bgLayer = map.createLayer('Background', tileset, 0, 0)
-        // const terrainLayer = map.createLayer('Terrain', tileset, 0, 0)
-        // const treeLayer = map.createLayer('Trees', tileset, 0, 0).setDepth(200)
+        const trLayer = map.createLayer('terrain', tileset, 0, 100)
 
         // add base
         this.base = new Workshop(this, map.widthInPixels / 2, map.heightInPixels / 2, 'base')
@@ -119,10 +117,8 @@ class Play extends Phaser.Scene {
 
         // enable collision
         this.robot.body.setCollideWorldBounds(true)
-        // terrainLayer.setCollisionByProperty({ collides: true })
-        // treeLayer.setCollisionByProperty({ collides: true })
-        // this.physics.add.collider(this.robot, terrainLayer)
-        // this.physics.add.collider(this.robot, treeLayer)
+        trLayer.setCollisionByProperty({ collides: true })
+        this.physics.add.collider(this.robot, trLayer)
 
         // cameras
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
@@ -133,7 +129,7 @@ class Play extends Phaser.Scene {
         this.resourceGroup = this.add.group({
             runChildUpdate: true
         });
-        this.addResource(); 
+        this.addResource();
 
         // display collected resources
         this.resourceText = this.add.text(20, 20, `Scrap x${this.robot.nScrap}`).setScrollFactor(0);
