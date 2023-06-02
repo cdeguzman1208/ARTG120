@@ -4,6 +4,9 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+        // reset stage for replay
+        stage = 0
+
         this.selectSFX = this.sound.add('select')
         
         // add sounds
