@@ -20,6 +20,7 @@ class Play extends Phaser.Scene {
 
         // robot sprite name array for evolution
         this.spriteArray = ['robot', 'robot2', 'robot3'];
+        this.baseArray = ['base', 'base2', 'base2'];
 
         // set up scene switcher
         this.input.keyboard.on('keydown', (event) => {
@@ -52,10 +53,10 @@ class Play extends Phaser.Scene {
         map = this.add.tilemap('tilemapJSON')
         const tileset = map.addTilesetImage('tilesheet', 'tilesetImage')
         const bgLayer = map.createLayer('floor', tileset, 0, 0)
-        const trLayer = map.createLayer('terrain', tileset, 0, 100)
+        const trLayer = map.createLayer('terrain', tileset, 0, 0).setDepth(100)
 
         // add base
-        this.base = new Workshop(this, map.widthInPixels / 2, map.heightInPixels / 2, 'base')
+        this.base = new Workshop(this, map.widthInPixels / 2, map.heightInPixels / 2, this.baseArray[stage])
 
         // create animations
         this.anims.create({
@@ -132,7 +133,7 @@ class Play extends Phaser.Scene {
         this.addResource();
 
         // display collected resources
-        this.resourceText = this.add.text(20, 20, `Scrap x${this.robot.nScrap}`).setScrollFactor(0);
+        this.resourceText = this.add.text(20, 20, `Scrap x${this.robot.nScrap}`).setScrollFactor(0).setDepth(200);
 
         // robot-resource overlap check
         this.physics.add.overlap(this.robot, this.resourceGroup, (robot,resource) => {
@@ -158,6 +159,10 @@ class Play extends Phaser.Scene {
                 stage++;
                 robot.evolve();
                 base.evolve();
+            }
+            if(stage == 2) {
+                this.base.setScale(2)
+                base.scrapText.y = centerY + 300
             }
             robot.runVelocity = robot.maxVelocity;
         }, null, this);
