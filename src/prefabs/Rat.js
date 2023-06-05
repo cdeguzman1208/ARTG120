@@ -29,6 +29,7 @@ class Rat extends Phaser.Physics.Arcade.Sprite {
         // set up physics sprite 
         this.parentScene.add.existing(this)
         this.parentScene.physics.add.existing(this)
+        this.body.immovable = true; 
 
         if (this.side == 0) {
             this.setVelocity(0, 100); 
@@ -44,6 +45,8 @@ class Rat extends Phaser.Physics.Arcade.Sprite {
         }
 
         this.scrap = false; 
+        this.s = 0; 
+        this.turn = false; 
         // this.maxVelocity = 150; 
 
         this.anims.play('ratWalk');
@@ -51,6 +54,7 @@ class Rat extends Phaser.Physics.Arcade.Sprite {
 
     steal() {
         this.scrap = true; 
+        this.s = 1; 
 
         if (this.side == 0) {
             this.setVelocity(0, -100); 
@@ -71,23 +75,27 @@ class Rat extends Phaser.Physics.Arcade.Sprite {
     }
 
     scurry() {
-        this.scrap = true; 
+        // this.scrap = true; 
 
-        if (this.side == 0) {
-            this.setVelocity(0, -200); 
-            this.side = 2; 
-        }
-        else if (this.side == 1) {
-            this.setVelocity(200, 0); 
-            this.side = 3; 
-        }
-        else if (this.side == 2) {
-            this.setVelocity(0, 200); 
-            this.side = 0; 
-        }
-        else {
-            this.setVelocity(-200, 0); 
-            this.side = 1; 
+        if (this.turn == false) {
+            if (this.side == 0) {
+                this.setVelocity(0, -200); 
+                this.side = 2; 
+            }
+            else if (this.side == 1) {
+                this.setVelocity(200, 0); 
+                this.side = 3; 
+            }
+            else if (this.side == 2) {
+                this.setVelocity(0, 200); 
+                this.side = 0; 
+            }
+            else {
+                this.setVelocity(-200, 0); 
+                this.side = 1; 
+            }
+
+            this.turn = true; 
         }
     }
 
