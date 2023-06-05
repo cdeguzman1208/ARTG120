@@ -192,14 +192,15 @@ class Play extends Phaser.Scene {
         }, null, this)
 
         // player & rat collision
-        this.physics.add.collider(this.robot, this.ratGroup, (robot, rat) => {
-            if (rat.scrap == true) {
+        this.physics.add.overlap(this.robot, this.ratGroup, (robot, rat) => {
+            if (rat.scrap == true && rat.s == 1) {
                 // rat.disableBody(true); 
+                rat.s = 0; 
                 rat.scurry(); 
                 let resource = new Resource(this, rat.x, rat.y, 0);
                 this.resourceGroup.add(resource); 
             }
-            else {
+            else if (rat.turn == false) {
                 rat.scurry(); 
             }   
         }, null, this)
