@@ -35,7 +35,7 @@ let centerY = game.config.height / 2
 let w = game.config.width
 let h = game.config.height
 let resourceCount; 
-let ratCount; 
+let ratCount = 0; 
 let cursors
 let keyW, keyA, keyS, keyD
 let map

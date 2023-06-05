@@ -174,9 +174,35 @@ class Play extends Phaser.Scene {
         this.ratGroup = this.add.group({
             runChildUpdate: true
         });
+        // this.addRat();
         this.time.delayedCall(2500, () => { 
             this.addRat(); 
         });
+
+        // rat & resource collision
+        this.physics.add.overlap(this.ratGroup, this.resourceGroup, (rat, resource) => {
+            if(resource.body.velocity.x == 0 && resource.body.velocity.y == 0){
+                if (rat.scrap == false) {
+                    // this.pickupSFX.play()
+                    resource.destroy();
+                    resourceCount--; 
+                    rat.steal();
+                }
+            }
+        }, null, this)
+
+        // player & rat collision
+        this.physics.add.collider(this.robot, this.ratGroup, (robot, rat) => {
+            if (rat.scrap == true) {
+                // rat.disableBody(true); 
+                rat.scurry(); 
+                let resource = new Resource(this, rat.x, rat.y, 0);
+                this.resourceGroup.add(resource); 
+            }
+            else {
+                rat.scurry(); 
+            }   
+        }, null, this)
 
         // input
         this.cursors = this.input.keyboard.createCursorKeys()
@@ -193,9 +219,10 @@ class Play extends Phaser.Scene {
     }
 
     addRat() {
-        console.log('rat'); 
+        // console.log('rat'); 
         let rat = new Rat(this, 150); 
         this.ratGroup.add(rat); 
+        // ratCount++; 
     }
 
     update() {
