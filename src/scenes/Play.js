@@ -182,7 +182,7 @@ class Play extends Phaser.Scene {
         // rat & resource collision
         this.physics.add.overlap(this.ratGroup, this.resourceGroup, (rat, resource) => {
             if(resource.body.velocity.x == 0 && resource.body.velocity.y == 0){
-                if (rat.scrap == false) {
+                if (rat.s < 3 && rat.scrap == false) {
                     // this.pickupSFX.play()
                     resource.destroy();
                     resourceCount--; 
@@ -193,12 +193,15 @@ class Play extends Phaser.Scene {
 
         // player & rat collision
         this.physics.add.overlap(this.robot, this.ratGroup, (robot, rat) => {
-            if (rat.scrap == true && rat.s == 1) {
+            if (rat.s > 0) {
                 // rat.disableBody(true); 
+                for (let i = rat.s; i > 0; i--) {
+                    rat.scurry(); 
+                    let resource = new Resource(this, rat.x, rat.y, 0);
+                    this.resourceGroup.add(resource); 
+                }
                 rat.s = 0; 
-                rat.scurry(); 
-                let resource = new Resource(this, rat.x, rat.y, 0);
-                this.resourceGroup.add(resource); 
+                rat.scrap = true; 
             }
             else if (rat.turn == false) {
                 rat.scurry(); 
