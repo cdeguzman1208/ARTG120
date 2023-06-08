@@ -53,24 +53,29 @@ class Rat extends Phaser.Physics.Arcade.Sprite {
     }
 
     steal() {
-        this.scrap = true; 
-        this.s = 1; 
+        if (this.s < 3) {
+            this.s++; 
 
-        if (this.side == 0) {
-            this.setVelocity(0, -100); 
-            this.side = 2; 
-        }
-        else if (this.side == 1) {
-            this.setVelocity(100, 0); 
-            this.side = 3; 
-        }
-        else if (this.side == 2) {
-            this.setVelocity(0, 100); 
-            this.side = 0; 
-        }
-        else {
-            this.setVelocity(-100, 0); 
-            this.side = 1; 
+            if (this.s == 3) {
+                this.scrap = true; 
+                
+                if (this.side == 0) {
+                    this.setVelocity(0, -100); 
+                    this.side = 2; 
+                }
+                else if (this.side == 1) {
+                    this.setVelocity(100, 0); 
+                    this.side = 3; 
+                }
+                else if (this.side == 2) {
+                    this.setVelocity(0, 100); 
+                    this.side = 0; 
+                }
+                else {
+                    this.setVelocity(-100, 0); 
+                    this.side = 1; 
+                }
+            }
         }
     }
 
