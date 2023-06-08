@@ -14,7 +14,7 @@ class Play extends Phaser.Scene {
         this.pickupSFX = this.sound.add('pickup')
         this.dropSFX = this.sound.add('drop')
         this.upgradeSFX = this.sound.add('upgrade')
-        this.hooraySFX = this.sound.add('hooray')
+        this.squeakSFX = this.sound.add('squeak')
 
         // variables/settings
         resourceCount = 0; 
@@ -193,6 +193,7 @@ class Play extends Phaser.Scene {
 
         // player & rat collision
         this.physics.add.overlap(this.robot, this.ratGroup, (robot, rat) => {
+            this.squeakSFX.play();
             if (rat.s > 0) {
                 // rat.disableBody(true); 
                 for (let i = rat.s; i > 0; i--) {
