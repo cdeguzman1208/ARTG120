@@ -14,6 +14,7 @@ class Vulture extends Phaser.Physics.Arcade.Sprite {
         this.patrolDist = patrolDist;
         this.speed = speed;
         this.chasing = false;
+        this.direction = new Phaser.Math.Vector2(0)
 
         // target coordinates
         this.targetX = x;
@@ -28,11 +29,19 @@ class Vulture extends Phaser.Physics.Arcade.Sprite {
 
     chooseDestination() {
         // make patrol destination the edge of a square for now
-        this.targetX = Phaser.Math.Between(this.x - this.patrolDist, this.x + this.patrolDist);
-        this.targetY = Phaser.Math.Between(this.y - this.patrolDist, this.y + this.patrolDist);
-        let vX = (this.targetX - this.x); 
-        let vY = (this.targetY - this.y);
-        this.setVelocity(vX, vY);
+        // this.targetX = Phaser.Math.Between(this.x - this.patrolDist, this.x + this.patrolDist);
+        // this.targetY = Phaser.Math.Between(this.y - this.patrolDist, this.y + this.patrolDist);
+
+
+        // let vX = (this.targetX - this.x); 
+        // let vY = (this.targetY - this.y);
+        // this.setVelocity(vX, vY);
+
+        this.direction.x = Math.cos(Math.random() * Math.PI)
+        this.direction.y = Math.sin(Math.PI/2 + Math.random() * Math.PI)
+        this.direction.normalize();
+        this.setVelocity(this.direction.x * this.speed, this.direction.y * this.speed)
+
 
         this.patrolTime = this.parentScene.time.delayedCall(1000, () => {
             this.setVelocity(0,0);

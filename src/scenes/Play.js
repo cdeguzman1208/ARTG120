@@ -22,7 +22,7 @@ class Play extends Phaser.Scene {
         this.direction = new Phaser.Math.Vector2(0)
         // vulture params
         this.numVultures = 20;                           // number of vultures
-        this.vultureSpeed = 1000;
+        this.vultureSpeed = 200;
         this.vulturePatrolDist = 200;
 
         // robot sprite name array for evolution
@@ -207,10 +207,6 @@ class Play extends Phaser.Scene {
                 rat.scurry(); 
             }   
         }, null, this)
-
-        // add test vulture
-        this.vulture = new Vulture(this, map.widthInPixels / 2, map.heightInPixels / 2, 1000, 200);
-        this.vulture.chooseDestination();
 
         // add vulture group
         this.vultureGroup = this.add.group({
