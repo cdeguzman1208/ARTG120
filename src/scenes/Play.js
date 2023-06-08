@@ -115,10 +115,6 @@ class Play extends Phaser.Scene {
         // add player
         this.robot = new Player(this, map.widthInPixels / 2, map.heightInPixels / 2 + 15, this.spriteArray[stage])
 
-        // add test vulture
-        this.vulture = new Vulture(this, map.widthInPixels / 2, map.heightInPixels / 2, 1000, 200).chooseDestination();
-
-
         // enable collision
         this.robot.body.setCollideWorldBounds(true)
         trLayer.setCollisionByProperty({ collides: true })
@@ -204,6 +200,9 @@ class Play extends Phaser.Scene {
                 rat.scurry(); 
             }   
         }, null, this)
+
+        // add test vulture
+        this.vulture = new Vulture(this, map.widthInPixels / 2, map.heightInPixels / 2, 1000, 200).chooseDestination();
 
         // input
         this.cursors = this.input.keyboard.createCursorKeys()

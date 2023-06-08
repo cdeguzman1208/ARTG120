@@ -10,10 +10,8 @@ class Vulture extends Phaser.Physics.Arcade.Sprite {
         this.parentScene.physics.add.existing(this)
 
         // properties
-        this.travelling = false;
         this.patrolDist = patrolDist;
         this.speed = speed;
-        this.patrolling = true;
 
         // target coordinates
         this.targetX = x;
@@ -21,6 +19,9 @@ class Vulture extends Phaser.Physics.Arcade.Sprite {
 
         // start flying animation
         this.play('fly');
+
+        // detection range
+        this.detectionRadius = 200;
     }
 
     update() {
@@ -34,8 +35,6 @@ class Vulture extends Phaser.Physics.Arcade.Sprite {
         let vX = (this.targetX - this.x); 
         let vY = (this.targetY - this.y);
         this.setVelocity(vX, vY);
-        // console.log(`vX = ${this.body.velocity.x}`)
-        // console.log(`vY = ${this.body.velocity.y}`)
 
         this.patrolTime = this.parentScene.time.delayedCall(1000, () => {
             this.setVelocity(0,0);
@@ -43,6 +42,18 @@ class Vulture extends Phaser.Physics.Arcade.Sprite {
                 this.chooseDestination();
             })
         })
+    }
+
+    chase() {
+        
+    }
+
+    detect() {
+        let dx = this.x - this.parentScene.robot.x;
+        let dy = this.y - this.parentScene.robot.y;
+        if(Math.sqrt( Math.pow(dx, 2) + Math.pow(dy, 2) ) < this.detectionRadius) {
+
+        }
     }
 
 }
