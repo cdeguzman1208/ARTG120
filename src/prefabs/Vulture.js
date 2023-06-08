@@ -8,10 +8,12 @@ class Vulture extends Phaser.Physics.Arcade.Sprite {
         // setup physics sprite
         this.parentScene.add.existing(this)
         this.parentScene.physics.add.existing(this)
+        this.body.setImmovable(true);
 
         // properties
         this.patrolDist = patrolDist;
         this.speed = speed;
+        this.chasing = false;
 
         // target coordinates
         this.targetX = x;
@@ -24,10 +26,6 @@ class Vulture extends Phaser.Physics.Arcade.Sprite {
         this.detectionRadius = 200;
     }
 
-    update() {
-
-    }
-
     chooseDestination() {
         // make patrol destination the edge of a square for now
         this.targetX = Phaser.Math.Between(this.x - this.patrolDist, this.x + this.patrolDist);
@@ -38,13 +36,14 @@ class Vulture extends Phaser.Physics.Arcade.Sprite {
 
         this.patrolTime = this.parentScene.time.delayedCall(1000, () => {
             this.setVelocity(0,0);
-            this.waitTime = this.parentScene.time.delayedCall(2000, () => {
+            let nextWaitTime = Phaser.Math.Between(500,2000);
+            this.waitTime = this.parentScene.time.delayedCall(nextWaitTime, () => {
                 this.chooseDestination();
             })
         })
     }
 
-    chase() {
+    flyTo() {
         
     }
 
@@ -52,8 +51,17 @@ class Vulture extends Phaser.Physics.Arcade.Sprite {
         let dx = this.x - this.parentScene.robot.x;
         let dy = this.y - this.parentScene.robot.y;
         if(Math.sqrt( Math.pow(dx, 2) + Math.pow(dy, 2) ) < this.detectionRadius) {
-
+            console.log('in range')
+            this.chasing = true;
         }
+    }
+
+    chase() {
+
+    }
+
+    update() {
+        this.rotation = this.body.angle;
     }
 
 }

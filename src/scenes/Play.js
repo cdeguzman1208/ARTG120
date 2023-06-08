@@ -20,6 +20,10 @@ class Play extends Phaser.Scene {
         resourceCount = 0; 
         ratCount = 0; 
         this.direction = new Phaser.Math.Vector2(0)
+        // vulture params
+        this.numVultures = 20;                           // number of vultures
+        this.vultureSpeed = 1000;
+        this.vulturePatrolDist = 200;
 
         // robot sprite name array for evolution
         this.spriteArray = ['robot', 'robot2', 'robot3'];
@@ -205,7 +209,22 @@ class Play extends Phaser.Scene {
         }, null, this)
 
         // add test vulture
-        this.vulture = new Vulture(this, map.widthInPixels / 2, map.heightInPixels / 2, 1000, 200).chooseDestination();
+        this.vulture = new Vulture(this, map.widthInPixels / 2, map.heightInPixels / 2, 1000, 200);
+        this.vulture.chooseDestination();
+
+        // add vulture group
+        this.vultureGroup = this.add.group({
+            runChildUpdate: true
+        });
+        for(let i = 0; i < this.numVultures; i++) {
+            let randX = Phaser.Math.Between(50, map.widthInPixels - 50);
+            let randY = Phaser.Math.Between(50, map.widthInPixels - 50);
+
+            let newVulture = new Vulture(this, randX, randY, this.vultureSpeed, this.vulturePatrolDist);
+            newVulture.chooseDestination();
+
+            this.vultureGroup.add(newVulture)
+        }
 
         // input
         this.cursors = this.input.keyboard.createCursorKeys()
@@ -257,5 +276,10 @@ class Play extends Phaser.Scene {
             this.dropSFX.play()
             this.robot.throwScrap();
         }
+
+        // temp vulture update
+        // this.vulture.update();
+
+
     }
 }
