@@ -37,7 +37,7 @@ class Gameover extends Phaser.Scene {
         });
 
         // add text 
-        this.time.delayedCall(3000, () => {
+        this.time.delayedCall(2000, () => {
             this.add.text(centerX, 200, 'C O N G R A T U L A T I O N S !', goConfig).setOrigin(0.5);
             this.add.text(centerX, 250, 'YOU\'RE BUILT DIFFERENT', goConfig).setOrigin(0.5); 
             this.time.delayedCall(1000, () => {
