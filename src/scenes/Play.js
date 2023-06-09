@@ -168,7 +168,7 @@ class Play extends Phaser.Scene {
 
             // gameover check 
             if ((stage == 2 && base.nScrap >= 50) && this.gameover == false) {
-                this.time.delayedCall(2000, () => {
+                this.time.delayedCall(1000, () => {
                     this.gameover = true; 
 
                     this.scene.transition({
