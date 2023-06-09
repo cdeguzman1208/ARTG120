@@ -53,6 +53,7 @@ class Gameover extends Phaser.Scene {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(keyESC)) {
+            bgm.stop()
             this.selectSFX.play();
             this.scene.start('menuScene'); 
         }

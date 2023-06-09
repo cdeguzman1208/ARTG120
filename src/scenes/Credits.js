@@ -11,6 +11,7 @@ class Credits extends Phaser.Scene {
             switch(event.key) {
                 case 'Escape':
                     // console.log('menu')
+                    bgm.stop()
                     this.selectSFX.play()
                     this.scene.start('menuScene')
                     break

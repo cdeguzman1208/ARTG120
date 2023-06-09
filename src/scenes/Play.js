@@ -31,13 +31,9 @@ class Play extends Phaser.Scene {
             switch(event.key) {
                 case 'Escape':
                     // console.log('menu')
+                    bgm.stop()
                     this.selectSFX.play()
                     this.scene.start('menuScene')
-                    break
-                case 'r':
-                    // console.log('play')
-                    this.selectSFX.play()
-                    this.scene.restart()
                     break
                 case 'Backspace':
                     // console.log('credits')
