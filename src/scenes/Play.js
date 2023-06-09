@@ -57,7 +57,7 @@ class Play extends Phaser.Scene {
         map = this.add.tilemap('tilemapJSON')
         const tileset = map.addTilesetImage('tilesheet', 'tilesetImage')
         const bgLayer = map.createLayer('floor', tileset, 0, 0)
-        const trLayer = map.createLayer('terrain', tileset, 0, 0)//.setDepth(100)
+        const trLayer = map.createLayer('terrain', tileset, 0, 0).setDepth(100)
 
         // add base
         this.base = new Workshop(this, map.widthInPixels / 2, map.heightInPixels / 2, this.baseArray[stage])
