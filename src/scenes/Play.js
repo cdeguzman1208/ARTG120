@@ -7,7 +7,6 @@ class Play extends Phaser.Scene {
         // reset stage for replay
         stage = 0
         this.gameover = false; 
-        this.test = true; 
 
         this.selectSFX = this.sound.add('select')
         
@@ -170,29 +169,21 @@ class Play extends Phaser.Scene {
                 base.scrapText.y = centerY + 300
             }
             robot.runVelocity = robot.maxVelocity;
+
+            // gameover check 
             if ((stage == 2 && base.nScrap >= 50) && this.gameover == false) {
-            // if (this.test == true) {
-                this.gameover = true; 
-                // this.add.text(centerX, centerY, 'CONFETTI'); 
-                
-                // set up particle emitter
-                let line = new Phaser.Geom.Line(0, 0, map.widthInPixels, 0);
-                this.lineEmitter = this.add.particles(0, 0, 'confetti', {
-                    gravityY: 200,
-                    lifespan: 3500,
-                    // alpha: {
-                    //     start: 0.5,
-                    //     end: 0.1
-                    // },
-                    tint: [ Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF ],
-                    emitZone: { 
-                        type: 'random', 
-                        source: line, 
-                        quantity: 500 
-                    },
-                    blendMode: 'ADD',
-                    // scale: 0.5
-                });
+                this.time.delayedCall(2000, () => {
+                    this.gameover = true; 
+
+                    this.scene.transition({
+                        // allowInput: false,
+                        target: "gameoverScene",
+                        duration: SCENE_TRANSITION_TIME,
+                        onStart: () => {
+                            this.cameras.main.fadeOut(SCENE_TRANSITION_TIME, 0, 0, 0)
+                        }
+                    })
+                })
             }
         }, null, this);
 
@@ -200,7 +191,6 @@ class Play extends Phaser.Scene {
         this.ratGroup = this.add.group({
             runChildUpdate: true
         });
-        // this.addRat();
         this.time.delayedCall(2500, () => { 
             this.addRat(); 
         });
