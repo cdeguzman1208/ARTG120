@@ -24,7 +24,31 @@ class Credits extends Phaser.Scene {
             }
         })
 
-        this.add.text(centerX, centerY, 'credits'); 
+        this.add.text(centerX, centerY, 'credits');
+
+        // production
+        // cromwell de guzman
+
+        // design
+        // david amaya
+        // cromwell de guzman
+        // emma lapolt
+
+        // programming
+        // david amaya
+        // beatrice yu
+        // cromwell de guzman
+
+        // writing
+        // david amaya
+        // cromwell de guzman
+
+        // art
+        // emma lapolt
+
+        // audio
+        // cromwell de guzman
+        // gabriel hong
     }
 
     update() {
