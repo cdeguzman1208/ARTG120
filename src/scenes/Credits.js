@@ -23,6 +23,8 @@ class Credits extends Phaser.Scene {
                     break
             }
         })
+
+        this.add.text(centerX, centerY, 'credits'); 
     }
 
     update() {
