@@ -6,19 +6,13 @@ class Menu extends Phaser.Scene {
     create() {
         this.selectSFX = this.sound.add('select')
 
-         // add bgm
-         this.bgm = this.sound.add('bgm', { loop: true, volume: 0.50 });
-         this.bgm.play();
+        // add bgm
+        bgm.play()
         
         // set up scene switcher
         this.input.keyboard.on('keydown', (event) => {
             // console.log(event.key);
             switch(event.key) {
-                case 'Escape':
-                    // console.log('menu')
-                    this.selectSFX.play()
-                    this.scene.restart
-                    break
                 case ' ':
                     // console.log('play')
                     this.selectSFX.play()

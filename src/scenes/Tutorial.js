@@ -11,6 +11,7 @@ class Tutorial extends Phaser.Scene {
             switch(event.key) {
                 case 'Escape':
                     // console.log('menu')
+                    bgm.stop()
                     this.selectSFX.play()
                     this.scene.start('menuScene')
                     break
@@ -47,7 +48,7 @@ class Tutorial extends Phaser.Scene {
         let tutorialText = this.add.text(w/2, h/2 + 25, bulletPoints1, tutConfig).setOrigin(0.5)
         let arrowSwitch = this.add.text(w/2, h - 50, rightNext, tutConfig).setOrigin(0.5)
         this.input.keyboard.on('keydown', (event) => {
-            console.log(event.key)
+            // console.log(event.key)
             if(event.key == 'ArrowRight') {
                 this.selectSFX.play()
                 tutorialText.setText(bulletPoints2)
