@@ -5,6 +5,10 @@ class Menu extends Phaser.Scene {
 
     create() {
         this.selectSFX = this.sound.add('select')
+
+         // add bgm
+         this.bgm = this.sound.add('bgm', { loop: true, volume: 0.50 });
+         this.bgm.play();
         
         // set up scene switcher
         this.input.keyboard.on('keydown', (event) => {
