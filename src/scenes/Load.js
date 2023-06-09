@@ -38,12 +38,13 @@ class Load extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         })
-        this.load.image('bolt', 'bolt.png'); 
-        this.load.image('nut', 'nut.png'); 
-        this.load.image('screw', 'screw.png'); 
-        this.load.image('base', 'workshop1.png');
-        this.load.image('base2', 'workshop2.png');
-        this.load.image('confetti', 'confetti.png');
+        this.load.image('bolt', 'bolt.png')
+        this.load.image('nut', 'nut.png')
+        this.load.image('screw', 'screw.png')
+        this.load.image('base', 'workshop1.png')
+        this.load.image('base2', 'workshop2.png')
+        this.load.image('base3', 'workshop3.png')
+        this.load.image('confetti', 'confetti.png')
 
         // tiles
         this.load.path = './assets/art/tiles/'
@@ -64,6 +65,7 @@ class Load extends Phaser.Scene {
         this.load.audio('squeak', 'jump.wav')
         this.load.audio('upgrade', 'powerUp.wav')
         this.load.audio('drop', 'explosion.wav')
+        this.load.audio('squawk', 'Palo Verde Terr.mp3')
     }
 
     create() {

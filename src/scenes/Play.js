@@ -24,7 +24,7 @@ class Play extends Phaser.Scene {
 
         // robot sprite name array for evolution
         this.spriteArray = ['robot', 'robot2', 'robot3'];
-        this.baseArray = ['base', 'base2', 'base2'];
+        this.baseArray = ['base', 'base2', 'base3'];
 
         // set up scene switcher
         this.input.keyboard.on('keydown', (event) => {
