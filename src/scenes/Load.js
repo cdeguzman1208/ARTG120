@@ -54,6 +54,7 @@ class Load extends Phaser.Scene {
 
         // music
         this.load.path = './assets/sound/music/'
+        this.load.audio('bgm', 'man-is-he-mega-glbml-22045.mp3')
 
         // sfx
         this.load.path = './assets/sound/sfx/'
