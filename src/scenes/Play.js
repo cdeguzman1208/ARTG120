@@ -35,15 +35,6 @@ class Play extends Phaser.Scene {
                     this.selectSFX.play()
                     this.scene.start('menuScene')
                     break
-                case 'Backspace':
-                    // console.log('credits')
-                    this.selectSFX.play()
-                    this.scene.start('creditsScene')
-                    break
-                case 't' :
-                    this.selectSFX.play()
-                    this.scene.start('tutorialScene')
-                    break
                 default:
                     break
             }
