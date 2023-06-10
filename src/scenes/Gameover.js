@@ -27,20 +27,20 @@ class Gameover extends Phaser.Scene {
         this.lineEmitter = this.add.particles(0, 0, 'confetti', {
             gravityY: 300,
             lifespan: 2000,
-            tint: [ Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF ],
+            tint: [ Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF, Math.random() * 0xFFFFFF,  Math.random() * 0xFFFFFF,  Math.random() * 0xFFFFFF,  Math.random() * 0xFFFFFF,  Math.random() * 0xFFFFFF,  Math.random() * 0xFFFFFF ],
             emitZone: { 
                 type: 'random', 
                 source: line, 
                 quantity: 500 
             },
-            blendMode: 'ADD',
+            // blendMode: 'ADD',
         });
 
         // add text 
-        this.time.delayedCall(2000, () => {
+        this.time.delayedCall(1000, () => {
             this.add.text(centerX, 200, 'C O N G R A T U L A T I O N S !', goConfig).setOrigin(0.5);
             this.add.text(centerX, 250, 'YOU\'RE BUILT DIFFERENT', goConfig).setOrigin(0.5); 
-            this.time.delayedCall(1000, () => {
+            this.time.delayedCall(500, () => {
                 goConfig.fontSize = '20px';
                 this.add.text(centerX, 450, '(ESC) for main menu || (BACKSPACE) for credits', goConfig).setOrigin(0.5); 
             })
