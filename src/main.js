@@ -37,7 +37,7 @@ let h = game.config.height
 let resourceCount
 let ratCount = 0
 let cursors
-let keyW, keyA, keyS, keyD, keyESC, keyBACK
+let keyW, keyA, keyS, keyD, keyESC, keyBACK, keyG
 let map
 let bgm
 
