@@ -3,7 +3,7 @@
 
 // main game object
 let config  = {
-    type: Phaser.CANVAS,
+    type: Phaser.AUTO,
     width: 640,
     height: 480,
     zoom: 1.25,
@@ -16,7 +16,7 @@ let config  = {
             debug: true
         }
     },
-    scene: [ Load, Menu, Play, Credits, Tutorial ],
+    scene: [ Load, Menu, Play, Credits, Tutorial, Gameover ],
     fps: {
         target: 60,
         forceSetTimeOut: true
@@ -34,13 +34,17 @@ let centerX = game.config.width / 2
 let centerY = game.config.height / 2
 let w = game.config.width
 let h = game.config.height
-let resourceCount; 
-let ratCount = 0; 
+let resourceCount
+let ratCount = 0
 let cursors
-let keyW, keyA, keyS, keyD
+let keyW, keyA, keyS, keyD, keyESC, keyBACK, keyG
 let map
+let bgm
 
 // evolution tracking
 let stage = 0;
-const max_scraps_robot = [5, 10, 15];   // tweak as necessary
-const max_scraps_base = [15, 35, 50];   // tweak as necessary
+const max_scraps_robot = [5, 10, 15]   // tweak as necessary
+const max_scraps_base = [15, 35, 50]   // tweak as necessary
+
+// gameover scene switching
+const SCENE_TRANSITION_TIME = 3000

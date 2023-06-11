@@ -6,6 +6,7 @@ class Play extends Phaser.Scene {
     create() {
         // reset stage for replay
         stage = 0
+        this.gameover = false; 
 
         this.selectSFX = this.sound.add('select')
         
@@ -14,7 +15,7 @@ class Play extends Phaser.Scene {
         this.pickupSFX = this.sound.add('pickup')
         this.dropSFX = this.sound.add('drop')
         this.upgradeSFX = this.sound.add('upgrade')
-        this.hooraySFX = this.sound.add('hooray')
+        this.squeakSFX = this.sound.add('squeak')
 
         // variables/settings
         resourceCount = 0; 
@@ -27,29 +28,16 @@ class Play extends Phaser.Scene {
 
         // robot sprite name array for evolution
         this.spriteArray = ['robot', 'robot2', 'robot3'];
-        this.baseArray = ['base', 'base2', 'base2'];
+        this.baseArray = ['base', 'base2', 'base3'];
 
         // set up scene switcher
         this.input.keyboard.on('keydown', (event) => {
             switch(event.key) {
                 case 'Escape':
                     // console.log('menu')
+                    bgm.stop()
                     this.selectSFX.play()
                     this.scene.start('menuScene')
-                    break
-                case 'r':
-                    // console.log('play')
-                    this.selectSFX.play()
-                    this.scene.restart()
-                    break
-                case 'Backspace':
-                    // console.log('credits')
-                    this.selectSFX.play()
-                    this.scene.start('creditsScene')
-                    break
-                case 't' :
-                    this.selectSFX.play()
-                    this.scene.start('tutorialScene')
                     break
                 default:
                     break
@@ -168,13 +156,28 @@ class Play extends Phaser.Scene {
                 base.scrapText.y = centerY + 300
             }
             robot.runVelocity = robot.maxVelocity;
+
+            // gameover check 
+            if ((stage == 2 && base.nScrap >= 50) && this.gameover == false) {
+                this.time.delayedCall(1000, () => {
+                    this.gameover = true; 
+
+                    this.scene.transition({
+                        // allowInput: false,
+                        target: "gameoverScene",
+                        duration: SCENE_TRANSITION_TIME,
+                        onStart: () => {
+                            this.cameras.main.fadeOut(SCENE_TRANSITION_TIME, 0, 0, 0)
+                        }
+                    })
+                })
+            }
         }, null, this);
 
         // rat group 
         this.ratGroup = this.add.group({
             runChildUpdate: true
         });
-        // this.addRat();
         this.time.delayedCall(2500, () => { 
             this.addRat(); 
         });
@@ -193,6 +196,7 @@ class Play extends Phaser.Scene {
 
         // player & rat collision
         this.physics.add.overlap(this.robot, this.ratGroup, (robot, rat) => {
+            this.squeakSFX.play();
             if (rat.s > 0) {
                 // rat.disableBody(true); 
                 for (let i = rat.s; i > 0; i--) {
