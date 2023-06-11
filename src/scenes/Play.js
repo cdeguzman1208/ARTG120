@@ -7,8 +7,6 @@ class Play extends Phaser.Scene {
         // reset stage for replay
         stage = 0
         this.gameover = false; 
-
-        this.selectSFX = this.sound.add('select')
         
         // add sounds
         this.selectSFX = this.sound.add('select')
@@ -16,6 +14,14 @@ class Play extends Phaser.Scene {
         this.dropSFX = this.sound.add('drop')
         this.upgradeSFX = this.sound.add('upgrade')
         this.squeakSFX = this.sound.add('squeak')
+        this.squawkSFX1 = this.sound.add('squawk_1')
+        this.squawkSFX2 = this.sound.add('squawk_2')
+        this.squawkSFX3 = this.sound.add('squawk_3')
+        this.squawkSFX4 = this.sound.add('squawk_4')
+        this.squawkSFX5 = this.sound.add('squawk_5')
+        this.squawkSFX6 = this.sound.add('squawk_6')
+        this.squawkSFX7 = this.sound.add('squawk_7')
+        this.squawkSFX8 = this.sound.add('squawk_8')
 
         // variables/settings
         resourceCount = 0; 
@@ -49,7 +55,7 @@ class Play extends Phaser.Scene {
         map = this.add.tilemap('tilemapJSON')
         const tileset = map.addTilesetImage('tilesheet', 'tilesetImage')
         const bgLayer = map.createLayer('floor', tileset, 0, 0)
-        const trLayer = map.createLayer('terrain', tileset, 0, 0).setDepth(100)
+        const trLayer = map.createLayer('terrain', tileset, 0, 0).setDepth(2)
 
         // add base
         this.base = new Workshop(this, map.widthInPixels / 2, map.heightInPixels / 2, this.baseArray[stage])
@@ -125,7 +131,7 @@ class Play extends Phaser.Scene {
         this.addResource();
 
         // display collected resources
-        this.resourceText = this.add.text(20, 20, `Scrap x${this.robot.nScrap}`).setScrollFactor(0).setDepth(200);
+        this.resourceText = this.add.text(20, 20, `Scrap x${this.robot.nScrap}`).setScrollFactor(0).setDepth(4);
 
         // robot-resource overlap check
         this.physics.add.overlap(this.robot, this.resourceGroup, (robot,resource) => {
@@ -178,6 +184,7 @@ class Play extends Phaser.Scene {
         this.time.delayedCall(2500, () => { 
             this.addRat(); 
         });
+        this.ratGroup.setDepth(3)
 
         // rat & resource collision
         this.physics.add.overlap(this.ratGroup, this.resourceGroup, (rat, resource) => {
@@ -220,7 +227,7 @@ class Play extends Phaser.Scene {
             let newVulture = new Vulture(this, randX, randY, this.vultureSpeed, this.vulturePatrolDist);
             newVulture.chooseDestination();
 
-            this.vultureGroup.add(newVulture)
+            this.vultureGroup.add(newVulture).setDepth(3)
         }
 
         // player-vulture collision
@@ -236,16 +243,40 @@ class Play extends Phaser.Scene {
                     robot.throwScrap();
                 }
                 // play sound
-                this.dropSFX.play()
-
-                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                // FOR CJ PUT THE SQUAWK SOUND RIGHT HERE
-                // (and then delete this)
-                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                // VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-
-
-
+                this.squawkConfig = {
+                    volume: 10
+                }
+                let randomSquawk = (Math.floor(Math.random() * 8)) + 1
+                console.log(randomSquawk)
+                switch (randomSquawk) {
+                    case 1:
+                        this.squawkSFX1.play(this.squawkConfig)
+                        break
+                    case 2:
+                        this.squawkSFX2.play(this.squawkConfig)
+                        break
+                    case 3:
+                        this.squawkSFX3.play(this.squawkConfig)
+                        break
+                    case 4:
+                        this.squawkSFX4.play(this.squawkConfig)
+                        break
+                    case 5:
+                        this.squawkSFX5.play(this.squawkConfig)
+                        break
+                    case 6:
+                        this.squawkSFX6.play(this.squawkConfig)
+                        break
+                    case 7:
+                        this.squawkSFX7.play(this.squawkConfig)
+                        break
+                    case 8:
+                        this.squawkSFX8.play(this.squawkConfig)
+                        break
+                    default:
+                        this.dropSFX.play()
+                        break
+                }
                 // invincible and blink sprite
                 robot.invincible = true;
                 robot.blinking = true;
