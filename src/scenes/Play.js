@@ -21,6 +21,7 @@ class Play extends Phaser.Scene {
         resourceCount = 0; 
         ratCount = 0; 
         this.direction = new Phaser.Math.Vector2(0)
+        this.invincibleTime = 2000
         // vulture params
         this.numVultures = 20;                           // number of vultures
         this.vultureSpeed = 200;
@@ -212,7 +213,7 @@ class Play extends Phaser.Scene {
             }   
         }, null, this)
 
-        // add vulture group
+        // add vulture group and spawn vultures
         this.vultureGroup = this.add.group({
             runChildUpdate: true
         });
@@ -226,6 +227,32 @@ class Play extends Phaser.Scene {
             this.vultureGroup.add(newVulture)
         }
 
+        // player-vulture collision
+        this.physics.add.overlap(this.robot, this.vultureGroup, (robot, vulture) => {
+            if(robot.invincible == false) {
+                // send to base if no scrap
+                if(robot.nScrap == 0){
+                    robot.x = this.base.x;
+                    robot.y = this.base.y;
+                }
+                // throw all scrap
+                while(robot.nScrap > 0) {
+                    robot.throwScrap();
+                }
+                // play sound
+                this.dropSFX.play()
+                // invincible and blink sprite
+                robot.invincible = true;
+                robot.blinking = true;
+                // time delay, remove invincibility, remove blinking
+                this.time.delayedCall(this.invincibleTime, () => {
+                    robot.invincible = false;
+                    robot.blinking = false
+                    robot.clearAlpha();
+                })
+        }
+        }, null, this)
+
         // input
         this.cursors = this.input.keyboard.createCursorKeys()
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -237,7 +264,7 @@ class Play extends Phaser.Scene {
     addResource() {
         // console.log('resource')
         let resource = new Resource(this, Math.random() * (map.widthInPixels - 64) + 32, Math.random() * (map.heightInPixels - 64) + 32, 0);
-        this.resourceGroup.add(resource); 
+        this.resourceGroup.add(resource);
     }
 
     addRat() {
@@ -248,6 +275,9 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        // robot update
+        this.robot.update();
+
         // player movement
         this.direction.x = 0;
         this.direction.y = 0;
@@ -268,18 +298,11 @@ class Play extends Phaser.Scene {
         this.direction.normalize()
         this.robot.setVelocity(this.robot.runVelocity * this.direction.x, this.robot.runVelocity * this.direction.y)
 
-        // console.log(this.robot.rotation);
-        // console.log(this.robot.body.angle);
-
         // player throw scrap
         if(Phaser.Input.Keyboard.JustDown(this.cursors.space) && this.robot.nScrap > 0) {
             this.dropSFX.play()
             this.robot.throwScrap();
         }
-
-        // temp vulture update
-        // this.vulture.update();
-
 
     }
 }

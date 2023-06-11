@@ -14,12 +14,21 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.nScrap = 0;
         this.maxVelocity = 200;
         this.runVelocity = this.maxVelocity;
+        this.invincible = false;
+        this.blinking = false;
 
         // start animation
         this.play(this.parentScene.animArray[stage]);
     }
 
     update() {
+        this.blink();
+    }
+
+    blink() {
+        if(this.blinking){
+            this.setAlpha(Math.sin(this.parentScene.time.now))
+        }
     }
 
     collect() {
