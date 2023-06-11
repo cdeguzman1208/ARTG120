@@ -21,7 +21,7 @@ class Play extends Phaser.Scene {
         resourceCount = 0; 
         ratCount = 0; 
         this.direction = new Phaser.Math.Vector2(0)
-        this.invincibleTime = 2000
+        this.invincibleTime = 1000
         // vulture params
         this.numVultures = 20;                           // number of vultures
         this.vultureSpeed = 200;
@@ -152,14 +152,10 @@ class Play extends Phaser.Scene {
                 robot.evolve();
                 base.evolve();
             }
-            if(stage == 2) {
-                this.base.setScale(2)
-                base.scrapText.y = centerY + 300
-            }
             robot.runVelocity = robot.maxVelocity;
 
             // gameover check 
-            if ((stage == 2 && base.nScrap >= 50) && this.gameover == false) {
+            if ((stage == 2 && base.nScrap >= max_scraps_base[2]) && this.gameover == false) {
                 this.time.delayedCall(1000, () => {
                     this.gameover = true; 
 

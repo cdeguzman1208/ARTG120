@@ -13,7 +13,7 @@ let config  = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true
+            // debug: true
         }
     },
     scene: [ Load, Menu, Play, Credits, Tutorial, Gameover ],
@@ -43,8 +43,9 @@ let bgm
 
 // evolution tracking
 let stage = 0;
-const max_scraps_robot = [5, 10, 15]   // tweak as necessary
-const max_scraps_base = [15, 35, 50]   // tweak as necessary
+const max_scraps_robot = [10, 15, 20]   // tweak as necessary
+// 20,45,60
+const max_scraps_base = [20, 45, 60]   // tweak as necessary
 
 // gameover scene switching
 const SCENE_TRANSITION_TIME = 3000

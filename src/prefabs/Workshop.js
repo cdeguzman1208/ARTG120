@@ -20,6 +20,11 @@ class Workshop extends Phaser.Physics.Arcade.Sprite {
         this.setTexture(this.parentScene.baseArray[stage]);
         this.nScrap = 0;
         this.scrapText.text = `${this.nScrap}/${max_scraps_base[stage]}`;
+        if(stage == 2) {
+            this.setScale(2)
+            this.scrapText.y = centerY + 300
+            this.body.setSize(32,32);
+        }
     }
 
     
