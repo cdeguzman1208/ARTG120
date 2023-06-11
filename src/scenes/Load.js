@@ -66,6 +66,9 @@ class Load extends Phaser.Scene {
         this.load.audio('upgrade', 'powerUp.wav')
         this.load.audio('drop', 'explosion.wav')
         this.load.audio('squawk', 'Palo Verde Terr.mp3')
+        for(let i = 1; i < 9; i++) {
+            this.load.audio('squawk_' + i, 'Palo Verde Terr ' + i + '.wav')
+        }
     }
 
     create() {

@@ -14,7 +14,14 @@ class Play extends Phaser.Scene {
         this.dropSFX = this.sound.add('drop')
         this.upgradeSFX = this.sound.add('upgrade')
         this.squeakSFX = this.sound.add('squeak')
-        this.squawkSFX = this.sound.add('squawk')
+        this.squawkSFX1 = this.sound.add('squawk_1')
+        this.squawkSFX2 = this.sound.add('squawk_2')
+        this.squawkSFX3 = this.sound.add('squawk_3')
+        this.squawkSFX4 = this.sound.add('squawk_4')
+        this.squawkSFX5 = this.sound.add('squawk_5')
+        this.squawkSFX6 = this.sound.add('squawk_6')
+        this.squawkSFX7 = this.sound.add('squawk_7')
+        this.squawkSFX8 = this.sound.add('squawk_8')
 
         // variables/settings
         resourceCount = 0; 
@@ -236,13 +243,40 @@ class Play extends Phaser.Scene {
                     robot.throwScrap();
                 }
                 // play sound
-                let squawkConfig = {
-                    volume: 10,
-                    seek: 9.5,
-
+                this.squawkConfig = {
+                    volume: 10
                 }
-                this.squawkSFX.play(squawkConfig)
-
+                let randomSquawk = (Math.floor(Math.random() * 8)) + 1
+                console.log(randomSquawk)
+                switch (randomSquawk) {
+                    case 1:
+                        this.squawkSFX1.play(this.squawkConfig)
+                        break
+                    case 2:
+                        this.squawkSFX2.play(this.squawkConfig)
+                        break
+                    case 3:
+                        this.squawkSFX3.play(this.squawkConfig)
+                        break
+                    case 4:
+                        this.squawkSFX4.play(this.squawkConfig)
+                        break
+                    case 5:
+                        this.squawkSFX5.play(this.squawkConfig)
+                        break
+                    case 6:
+                        this.squawkSFX6.play(this.squawkConfig)
+                        break
+                    case 7:
+                        this.squawkSFX7.play(this.squawkConfig)
+                        break
+                    case 8:
+                        this.squawkSFX8.play(this.squawkConfig)
+                        break
+                    default:
+                        this.dropSFX.play()
+                        break
+                }
                 // invincible and blink sprite
                 robot.invincible = true;
                 robot.blinking = true;
