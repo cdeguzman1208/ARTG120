@@ -15,11 +15,6 @@ class Credits extends Phaser.Scene {
                     this.selectSFX.play()
                     this.scene.start('menuScene')
                     break
-                case 'Backspace':
-                    // console.log('credits')
-                    this.selectSFX.play()
-                    this.scene.restart
-                    break
                 default:
                     break
             }
