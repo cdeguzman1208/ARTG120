@@ -247,7 +247,7 @@ class Play extends Phaser.Scene {
                     volume: 10
                 }
                 let randomSquawk = (Math.floor(Math.random() * 8)) + 1
-                console.log(randomSquawk)
+                // console.log(randomSquawk)
                 switch (randomSquawk) {
                     case 1:
                         this.squawkSFX1.play(this.squawkConfig)
