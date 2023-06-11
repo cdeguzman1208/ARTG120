@@ -22,7 +22,7 @@ class Play extends Phaser.Scene {
         this.direction = new Phaser.Math.Vector2(0)
         this.invincibleTime = 1000
         // vulture params
-        this.numVultures = 20;                           // number of vultures
+        this.numVultures = 10;                           // number of vultures
         this.vultureSpeed = 200;
         this.vulturePatrolDist = 200;
 
