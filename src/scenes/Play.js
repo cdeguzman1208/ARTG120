@@ -7,8 +7,6 @@ class Play extends Phaser.Scene {
         // reset stage for replay
         stage = 0
         this.gameover = false; 
-
-        this.selectSFX = this.sound.add('select')
         
         // add sounds
         this.selectSFX = this.sound.add('select')
@@ -16,6 +14,7 @@ class Play extends Phaser.Scene {
         this.dropSFX = this.sound.add('drop')
         this.upgradeSFX = this.sound.add('upgrade')
         this.squeakSFX = this.sound.add('squeak')
+        this.squawkSFX = this.sound.add('squawk')
 
         // variables/settings
         resourceCount = 0; 
@@ -49,7 +48,7 @@ class Play extends Phaser.Scene {
         map = this.add.tilemap('tilemapJSON')
         const tileset = map.addTilesetImage('tilesheet', 'tilesetImage')
         const bgLayer = map.createLayer('floor', tileset, 0, 0)
-        const trLayer = map.createLayer('terrain', tileset, 0, 0).setDepth(100)
+        const trLayer = map.createLayer('terrain', tileset, 0, 0).setDepth(2)
 
         // add base
         this.base = new Workshop(this, map.widthInPixels / 2, map.heightInPixels / 2, this.baseArray[stage])
@@ -125,7 +124,7 @@ class Play extends Phaser.Scene {
         this.addResource();
 
         // display collected resources
-        this.resourceText = this.add.text(20, 20, `Scrap x${this.robot.nScrap}`).setScrollFactor(0).setDepth(200);
+        this.resourceText = this.add.text(20, 20, `Scrap x${this.robot.nScrap}`).setScrollFactor(0).setDepth(4);
 
         // robot-resource overlap check
         this.physics.add.overlap(this.robot, this.resourceGroup, (robot,resource) => {
@@ -178,6 +177,7 @@ class Play extends Phaser.Scene {
         this.time.delayedCall(2500, () => { 
             this.addRat(); 
         });
+        this.ratGroup.setDepth(3)
 
         // rat & resource collision
         this.physics.add.overlap(this.ratGroup, this.resourceGroup, (rat, resource) => {
@@ -220,7 +220,7 @@ class Play extends Phaser.Scene {
             let newVulture = new Vulture(this, randX, randY, this.vultureSpeed, this.vulturePatrolDist);
             newVulture.chooseDestination();
 
-            this.vultureGroup.add(newVulture)
+            this.vultureGroup.add(newVulture).setDepth(3)
         }
 
         // player-vulture collision
@@ -236,15 +236,12 @@ class Play extends Phaser.Scene {
                     robot.throwScrap();
                 }
                 // play sound
-                this.dropSFX.play()
+                let squawkConfig = {
+                    volume: 10,
+                    seek: 9.5,
 
-                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                // FOR CJ PUT THE SQUAWK SOUND RIGHT HERE
-                // (and then delete this)
-                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                // VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-
-
+                }
+                this.squawkSFX.play(squawkConfig)
 
                 // invincible and blink sprite
                 robot.invincible = true;
