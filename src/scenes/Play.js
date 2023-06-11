@@ -237,6 +237,15 @@ class Play extends Phaser.Scene {
                 }
                 // play sound
                 this.dropSFX.play()
+
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // FOR CJ PUT THE SQUAWK SOUND RIGHT HERE
+                // (and then delete this)
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+
+
+
                 // invincible and blink sprite
                 robot.invincible = true;
                 robot.blinking = true;
