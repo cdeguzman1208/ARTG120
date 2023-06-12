@@ -32,12 +32,21 @@ class Menu extends Phaser.Scene {
             }
         })
 
+        // add environment
+        map = this.add.tilemap('tilemapJSON')
+        const tileset = map.addTilesetImage('tilesheet', 'tilesetImage')
+        const bgLayer = map.createLayer('floor', tileset, 0, 0)
+        const trLayer = map.createLayer('terrain', tileset, 0, 0)
+
+        // add logo
+        this.logo = this.add.sprite(centerX, centerY - 50, 'builtDiff')
+
         // add menu text
         let menuConfig = {
             fontFamily: 'Verdana',
             fontSize: '30px',
             color: 'white',
-            backgroundColor: 'black',
+            backgroundColor: 'brown',
             align: 'center',
             padding: {
                 top: 8,
@@ -47,11 +56,11 @@ class Menu extends Phaser.Scene {
             },
             fixedWidth: 0
         }
-        this.add.text(w/2, h/2 - 100, 'B U I L T  D I F F E R E N T', menuConfig).setOrigin(0.5)
-        menuConfig.fontSize = '20px'
+        this.add.text(centerX, centerY - 125 - 50, 'B U I L T  D I F F E R E N T', menuConfig).setOrigin(0.5)
+        menuConfig.fontSize = '18px'
         menuConfig.backgroundColor = ''
         menuConfig.align = 'left'
-        this.add.text(w/2 - 83, h/2 + 75, 'PLAY (SPACE)\n\nTUTORIAL (T)\n\nCREDITS (BACKSPACE)\n\nMAIN MENU (ESC)', menuConfig).setOrigin(0.5)
+        this.add.text(centerX - 125, centerY + 150 - 50, 'PLAY (SPACE)\n\nTUTORIAL (T)\n\nCREDITS (BACKSPACE)\n\nMAIN MENU (ESC)', menuConfig).setOrigin(0.5)
 
     }
 

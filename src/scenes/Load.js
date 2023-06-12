@@ -45,6 +45,7 @@ class Load extends Phaser.Scene {
         this.load.image('base2', 'workshop2.png')
         this.load.image('base3', 'workshop3.png')
         this.load.image('confetti', 'confetti.png')
+        this.load.image('builtDiff', 'builtdifflogo.png')
 
         // tiles
         this.load.path = './assets/art/tiles/'
