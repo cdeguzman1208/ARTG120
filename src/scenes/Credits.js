@@ -81,10 +81,11 @@ class Credits extends Phaser.Scene {
         this.audioText = this.add.text(centerX, h + 800, 'A U D I O', creditsConfig).setOrigin(0.5)
         this.sound1Text = this.add.text(centerX, h + 850, cj, creditsConfig).setOrigin(0.5)
         this.sound2Text = this.add.text(centerX, h + 900, 'Gabriel Hong', creditsConfig).setOrigin(0.5)
+        this.sound3Text = this.add.text(centerX, h + 950, 'Geoffrey Burch', creditsConfig).setOrigin(0.5)
     }
 
     update() {
-        if(this.sound2Text.y > -50) {
+        if(this.sound3Text.y > -50) {
             this.creditsText.y--
             this.productionText.y--
             this.producerText.y--
@@ -104,6 +105,7 @@ class Credits extends Phaser.Scene {
             this.audioText.y--
             this.sound1Text.y--
             this.sound2Text.y--
+            this.sound3Text.y--
         }
         else {
             this.scene.restart()
